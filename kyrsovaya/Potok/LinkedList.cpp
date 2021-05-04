@@ -3,11 +3,11 @@
 #include  <stdexcept>
 #include <string>
 
-LinkedList::LinkedList(int A, int B) // creating a list WITH data
+LinkedList::LinkedList(int Vertex1, int Vertex2) // creating a list WITH data
 {
 	head = new Node;
-	head->A = A;
-	head->B = B;
+	head->Vertex1 = Vertex1;
+	head->Vertex2 = Vertex2;
 	tail = head;
 	sizeList++;
 }
@@ -32,7 +32,7 @@ int LinkedList::at(size_t pos)
 		{
 			current = current->next;
 		}
-		return current->A;
+		return current->Vertex1;
 	}
 }
 bool LinkedList::find(int data)
@@ -40,7 +40,7 @@ bool LinkedList::find(int data)
 	Node* current = head;
 	while (current != nullptr)
 	{
-		if (current->B == data)
+		if (current->Vertex2 == data)
 		{
 			return true;
 		}
@@ -55,22 +55,13 @@ LinkedList* LinkedList::min_way()
 	{
 		LinkedList* way = new LinkedList();
 		Node* cur = tail;
-		while (find(cur->A)) // sredi B
+		while (find(cur->Vertex1)) // among the Vertex2
 		{
-			way->push_back(cur->B, 0);
-			cur = findNode(cur->A); // sredi B
+			way->push_back(cur->Vertex2, 0);
+			cur = findNode(cur->Vertex1); // among the Vertex2
 		}
-		way->push_back(cur->B, 0);
-		way->push_back(cur->A, 0);
-
-		/*sizeway = way->get_size();
-		minWay = new int[sizeway];
-		cur = tail;
-		for (int i = 0; i < sizeway; i++)
-		{
-			minWay[i] = cur->A;
-			cur = cur->prev;
-		}*/
+		way->push_back(cur->Vertex2, 0);
+		way->push_back(cur->Vertex1, 0);
 		return way;
 	}
 	return nullptr;
@@ -81,7 +72,7 @@ int* LinkedList::listInArr()
 	int* arr = new int[get_size()];
 	for (size_t i = 0; i < get_size(); i++)
 	{
-		arr[i] = cur->A;
+		arr[i] = cur->Vertex1;
 		cur = cur->prev;
 	}
 	return arr;
@@ -91,7 +82,7 @@ LinkedList::Node* LinkedList::findNode(int data)
 	Node* current = head;
 	while (current != nullptr)
 	{
-		if (current->B == data)
+		if (current->Vertex2 == data)
 		{
 			return current;
 		}
@@ -102,7 +93,7 @@ LinkedList::Node* LinkedList::findNode(int data)
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void LinkedList::clear() // deleting all list items
 {
-	if (isEmpty()); //throw std::out_of_range("The list is empty");
+	if (isEmpty());
 	else
 	{
 		while (sizeList != 0)
@@ -170,20 +161,19 @@ void LinkedList::print_to_console()
 		Node* current = head;
 		for (size_t position = 0; position < sizeList; position++)
 		{
-			std::cout << current->A << current->B << " ";
+			std::cout << current->Vertex1 << current->Vertex2 << " ";
 			current = current->next;
 		}
-		//std::cout << "\n\nSizeList: " << sizeList << "\n";
 	}
 }
 
-void LinkedList::push_back(int A, int B)
+void LinkedList::push_back(int Vertex1, int Vertex2)
 {
 	if (isEmpty()) // if the list is empty
 	{
 		head = new Node;
-		head->A = A;
-		head->B = B;
+		head->Vertex1 = Vertex1;
+		head->Vertex2 = Vertex2;
 		tail = head;
 	}
 	else
@@ -191,8 +181,8 @@ void LinkedList::push_back(int A, int B)
 		tail->next = new Node;
 		tail->next->prev = tail;
 		tail = tail->next;
-		tail->A = A;
-		tail->B = B;
+		tail->Vertex1 = Vertex1;
+		tail->Vertex2 = Vertex2;
 	}
 	sizeList++;
 }

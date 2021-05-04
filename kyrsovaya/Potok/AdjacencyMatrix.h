@@ -7,16 +7,16 @@ class AdjacencyMatrix
 private:
 	size_t sizeMatrix;
 	int** Matrix;
-	int** MaxPotok;
-	int** Potok;
+	int** MaxFlow;
+	int** Flow;
 
-	char* Cities;
+	char* Vertices;
 public:
-	AdjacencyMatrix(string); // creating a list WITHOUT data
+	AdjacencyMatrix(string);
 	~AdjacencyMatrix()
 	{
 		delete Matrix;
-		delete Cities;
+		delete Vertices;
 	};
 	void createMatrix(string);
 	int Edmonds_Karp();

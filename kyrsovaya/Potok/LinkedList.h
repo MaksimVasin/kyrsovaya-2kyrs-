@@ -7,30 +7,27 @@ class LinkedList
 private:
 	struct Node // Node List
 	{
-		Node(int A = ' ', int B = ' ', Node* prev = nullptr, Node* next = nullptr)
+		Node(int Vertex1 = ' ', int Vertex2 = ' ', Node* prev = nullptr, Node* next = nullptr)
 		{
 			this->next = next;
 			this->prev = prev;
-			this->A = A;
-			this->B = B;
+			this->Vertex1 = Vertex1;
+			this->Vertex2 = Vertex2;
 		};
-		int A;
-		int B;
+		int Vertex1;
+		int Vertex2;
 		Node* next; // next element
 		Node* prev; // previous element
 	};
 	size_t sizeList;
 	Node* head;
 	Node* tail;
-
-	/*int* minWay;
-	size_t sizeway;*/
 public:
-	LinkedList(int A, int B); // creating a list WITH data
+	LinkedList(int, int); // creating a list WITH data
 	LinkedList(); // creating a list WITHOUT data
 	~LinkedList();
 
-	void push_back(int A, int B);			 // 1 // add lust element
+	void push_back(int, int);			 // 1 // add lust element
 	//void push_front(int data);			 // 2 // add front element
 	void pop_back();					 // 3 // del lust element
 	void pop_front();					 // 4 // del front element
@@ -39,12 +36,10 @@ public:
 
 
 	///////////////////////////////////////////////////////////NEW METHODS
-	bool find(int); // find B
-	Node* findNode(int); // findNode B
+	bool find(int); // find Vertex2
+	Node* findNode(int); // findNode Vertex2
 	LinkedList* min_way();
 	int* listInArr();
-	/*size_t size_way() { return sizeway; };
-	int* min_way_arr() { return minWay; };*/
 	///////////////////////////////////////////////////////////
 
 	void remove(size_t pos);			 // 7 // del by index
